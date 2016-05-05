@@ -5,15 +5,20 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.*;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.criteria.*;
 
 @Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="Artist_Type")
 public class Artist {
 	@Id @GeneratedValue
 	private int artistId;
@@ -23,6 +28,8 @@ public class Artist {
 	private Date dateOfBirth;
 	@Temporal(TemporalType.DATE)
 	private Date placeOfBirth;
+	@Lob
+	private byte[] Picture;
 	private String biography;
 	
 	@ManyToMany(mappedBy="artists")

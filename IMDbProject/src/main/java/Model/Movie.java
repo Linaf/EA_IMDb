@@ -27,6 +27,7 @@ public class Movie {
 	private String title;
 	private String poster;
 	private String summary;
+	private String userComment;
 	
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
@@ -38,6 +39,8 @@ public class Movie {
     		joinColumns = @JoinColumn(name="movieId"),
     		inverseJoinColumns=@JoinColumn(name="artistId"))
 	private List<Artist> artists = new ArrayList<Artist>();
+	private Artist director;
+	
 
 	public long getId() {
 		return id;
@@ -93,6 +96,30 @@ public class Movie {
 
 	public List<Artist> getArtists() {
 		return artists;
+	}
+
+	public String getUserComment() {
+		return userComment;
+	}
+
+	public void setUserComment(String userComment) {
+		this.userComment = userComment;
+	}
+
+	public List<Genre> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(List<Genre> genres) {
+		this.genres = genres;
+	}
+
+	public Artist getDirector() {
+		return director;
+	}
+
+	public void setDirector(Artist director) {
+		this.director = director;
 	}
 
 }
